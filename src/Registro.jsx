@@ -26,13 +26,14 @@ function Registro() {
           sx={{
             width: '50%',
             objectFit: 'cover',
+            display: {xs: 'none', md: 'block'},
           }}
         />
 
         {/* Sección - formulario */}
         <Box
           sx={{
-            width: '50%',
+            width: {xs: '100%', md: '50%'},
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -40,7 +41,7 @@ function Registro() {
             padding: '20px',
           }}
         >
-          <Typography className='r_titulo' sx={{ marginBottom: '30px' }}>
+          <Typography className='r_titulo' sx={{ marginBottom: '30px', textAlign: 'center' }}>
             ¡Regístrate ya!
           </Typography>
           <Stack direction='column' sx={{ width: '100%', maxWidth: '400px' }} className='is_card_contenido'>
@@ -75,7 +76,7 @@ function Registro() {
               textCont='Registrarse' 
               type='submit' />
           </Box>
-          <Typography variant='body1'>
+          <Typography variant='body1' sx={{ textAlign: 'center' }}>
             ¿Ya tienes una cuenta? <Link href='/'> Ingresa aquí </Link>
           </Typography>
         </Box>

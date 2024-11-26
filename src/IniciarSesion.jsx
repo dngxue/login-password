@@ -26,13 +26,14 @@ function IniciarSesion() {
           sx={{
             width: '50%',
             objectFit: 'cover',
+            display: {xs: 'none', md: 'block'},
           }}
         />
 
         {/* Sección - formulario */}
         <Box
           sx={{
-            width: '50%',
+            width: {xs: '100%', md: '50%'},
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
@@ -68,7 +69,7 @@ function IniciarSesion() {
               ¿Olvidaste tu contraseña?
             </Link>
           </Typography>
-          <Typography variant='body1'>
+          <Typography variant='body1' sx={{textAlign: 'center'}}>
             ¿No tienes cuenta? <Link href='/registro'> Regístrate aquí </Link>
           </Typography>
         </Box>

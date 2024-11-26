@@ -9,8 +9,6 @@ import LockResetIcon from '@mui/icons-material/LockReset';
 // Componentes
 import ButtonsMod from './components/ButtonsMod';
 
-
-
 const RecuperarContrasenia = () => {
 
   const [email, setEmail] = useState('');

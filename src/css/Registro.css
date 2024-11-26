@@ -2,3 +2,9 @@
     font-size: 2.5rem !important;
     font-weight: bold !important;
 }
+
+@media (max-width: 600px) {
+    .is_card_titulo {
+        font-size: 2rem !important;
+    }
+}

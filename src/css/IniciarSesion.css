@@ -7,3 +7,9 @@
     width: 100%;
     z-index: -2;
 }
+
+@media (max-width: 600px) {
+    .is_card_titulo {
+        font-size: 2rem !important;
+    }
+}
