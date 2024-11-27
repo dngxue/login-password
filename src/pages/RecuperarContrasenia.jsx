@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import './css/RecuperarContrasena.css';
+import '../css/RecuperarContrasena.css';
 //  Material UI
-import ThemeMaterialUI from './components/ThemeMaterialUI';
+import ThemeMaterialUI from '../components/ThemeMaterialUI';
 import { Container, Card, Box, Link, Typography, CardHeader, CardContent, TextField } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 // Íconos
 import LockResetIcon from '@mui/icons-material/LockReset';
 // Componentes
-import ButtonsMod from './components/ButtonsMod';
+import ButtonsMod from '../components/ButtonsMod';
 
 const RecuperarContrasenia = () => {
 

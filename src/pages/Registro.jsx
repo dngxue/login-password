@@ -1,13 +1,13 @@
 import React from 'react';
-import './css/Registro.css';
+import '../css/Registro.css';
 // Material UI
-import ThemeMaterialUI from './components/ThemeMaterialUI.js';
+import ThemeMaterialUI from '../components/ThemeMaterialUI.js';
 import { ThemeProvider } from '@mui/material/styles';
 import { Card, TextField, Stack, Typography, Box, Container, Link } from '@mui/material';
 // Componentes
-import ButtonsMod from './components/ButtonsMod.jsx';
+import ButtonsMod from '../components/ButtonsMod.jsx';
 // Imágenes
-import bgImg from './img/bg-img.jpg';
+import bgImg from '../img/bg-img.jpg';
 
 function Registro() {
 

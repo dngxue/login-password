@@ -1,17 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import '../css/NavBar.css';
 import logo from '../img/logo-provicional.png';
 import avatar from '../img/userFoto.jpg';
 
 function Navbar({ transparentNavbar, lightLink, staticNavbar }) {
-  
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState('Nombre de Usuario'); // Simula el nombre del usuario
+  const [profileImage, setProfileImage] = useState(avatar);
+  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura del menú
+
+  const handleLoginClick = () => {
+    navigate('/login');
+  };
+
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
+
+  // Función para manejar la apertura y cierre del menú
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
 
   return (
     <>
       <nav className={`navbar navbar-expand-lg ${transparentNavbar ? 'position-fixed' : 'bg-light position-initial'} ${staticNavbar ? 'position-absolute' : ''}`}>
         <div className="mx-3 container-fluid">
           {/* Logo */}
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             <img className='logo-img' src={logo} alt="Logo-canasta-basica" />
           </Link>
 
@@ -44,7 +61,6 @@ function Navbar({ transparentNavbar, lightLink, staticNavbar }) {
                 <Link className={`nav-link ${lightLink ? 'blanco' : ''}`} to="/">Generar itinerario</Link>
               </li>
             </ul>
-
           </div>
         </div>
       </nav>

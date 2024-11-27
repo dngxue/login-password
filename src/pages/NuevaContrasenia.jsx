@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import './css/RecuperarContrasena.css';
+import '../css/RecuperarContrasena.css';
 // 
-import ThemeMaterialUI from './components/ThemeMaterialUI';
+import ThemeMaterialUI from '../components/ThemeMaterialUI';
 import PatternIcon from '@mui/icons-material/Pattern';
-import ButtonsMod from './components/ButtonsMod';
+import ButtonsMod from '../components/ButtonsMod';
 import {  InputLabel,InputAdornment, IconButton } from '@mui/material';
 import { Container, Card, Box, Typography, CardHeader, CardContent, FormControl, OutlinedInput } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
