@@ -8,7 +8,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 
 // modulos de iconos
 import { IconButton, InputAdornment, OutlinedInput } from '@mui/material';
-import { Visibility, VisibilityOff, Google as GoogleIcon, FacebookRounded as FacebookRoundedIcon, Close as CloseIcon } from '@mui/icons-material';
+import { Visibility, VisibilityOff, Close as CloseIcon } from '@mui/icons-material';
 
 // componentes importados
 import Navbar from '../components/NavBar';
@@ -88,27 +88,29 @@ function LoginPage() {
             lightLink={false}
             staticNavbar={false}
           />
-          <Container maxWidth='md' disableGutters className='my-5 py-4 d-flex align-items-center justify-content-center' >
+          <Container maxWidth='md' disableGutters className='py-4' >
 
             <Grid container sx={{ justifyContent: 'center', borderRadius: '6px', overflow: 'hidden' }}>
-              {/* lado izquierdo imagen con texto */}
+              {/* Lado Izquierdo - Imagen */}
               <Grid size={{ xs: 10, md: 6 }} className='login-left-container'>
                 <LeftImage
                   imageUrl={casaLeon} />
               </Grid>
 
-              {/* lado derecho formulario */}
+              {/* Lado derecho - Formulario*/}
               <Grid size={{ xs: 12, sm: 10, md: 6 }}>
                 <Card className='login-right-form' sx={{ padding: '1%'}}>
-                  <Box className='mx-3 pb-5 pt-3'>
-                    <Box className='d-flex justify-content-end' sx={{ display: 'flex', justifyContent: 'end' }}>
+                  <Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                       <IconButton aria-label='cerrar' onClick={handleHomeClick}>
                         <CloseIcon />
                       </IconButton>
                     </Box>
 
-                    <Box className='mx-4' sx={{margin: '0 15px 20px 15px'}}>
-                      <Typography variant='h4' sx={{ fontWeight: 'bold', marginBottom: '5px' }}>Iniciar sesión</Typography>
+                    <Box sx={{margin: '0 15px 20px 15px'}}>
+                      <Typography variant='h4' sx={{ fontWeight: 'bold', marginBottom: '5px' }}>
+                        Iniciar sesión
+                      </Typography>
                       <Typography variant='body1' sx={{marginBottom: '20px'}}>
                         Ingresa tus datos para continuar
                       </Typography>
@@ -116,7 +118,6 @@ function LoginPage() {
                       <form onSubmit={handleFormSubmit}>
                         <Box className='my-4'>
                           <TextField
-                            sx={{ marginBottom: '20px' }}
                             hiddenLabel
                             id='log-correo'
                             label='Correo electrónico'
@@ -127,32 +128,32 @@ function LoginPage() {
                             fullWidth
                             // errores si no cumple con las reglas
                             error={formSubmitted && !correo}
-                            helperText={formSubmitted && !correo ? "El correo no puede estar vacío" : ""}
+                            helperText={formSubmitted && !correo ? 'El correo no puede estar vacío' : ''}
                           />
                         </Box>
 
                         <Box className='my-4'>
-                          <FormControl variant="outlined" size="small" fullWidth error={formSubmitted && !contraseña}>
-                            <InputLabel htmlFor="log-password">Contraseña</InputLabel>
+                          <FormControl variant='outlined' size='small' fullWidth error={formSubmitted && !contraseña}>
+                            <InputLabel htmlFor='log-password'>Contraseña</InputLabel>
                             <OutlinedInput
-                              id="log-password"
+                              id='log-password'
                               type={showPassword ? 'text' : 'password'}
                               value={contraseña}
                               onChange={handleContraseñaChange}
                               endAdornment={
-                                <InputAdornment position="end">
+                                <InputAdornment position='end'>
                                   <IconButton
                                     aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                                     onClick={handleClickShowPassword}
                                     onMouseDown={handleMouseDownPassword}
                                     onMouseUp={handleMouseUpPassword}
-                                    edge="end"
+                                    edge='end'
                                   >
                                     {showPassword ? <VisibilityOff /> : <Visibility />}
                                   </IconButton>
                                 </InputAdornment>
                               }
-                              label="Contraseña"
+                              label='Contraseña'
                             />
                             {formSubmitted && !contraseña && (
                               <FormHelperText>La contraseña no puede estar vacía</FormHelperText>
@@ -161,19 +162,19 @@ function LoginPage() {
                         </Box>
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '50px' }}>
-                          <Button variant="contained" type="submit" sx={{ marginBottom: '30px' }} >
+                          <Button variant='contained' type='submit' >
                             Iniciar sesión
                           </Button>
 
-                          <Link href="/recuperar-contrasenia" underline="hover">
+                          <Link href='/recuperar-contrasenia' underline='hover'>
                             <Typography variant='body2' color='dark' className='mt-4 pb-2'>¿Olvidaste tu contraseña?</Typography>
                           </Link>
                         </Box>
                       </form>
 
-                      <Box className='mt-5' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '5px' }}>
-                        <Typography variant='body2'>
-                          ¿No tienes una cuenta? <Link href="/registro" underline="hover">Regístrate aquí</Link>
+                      <Box>
+                        <Typography variant='body2' sx={{ textAlign: 'center' }}>
+                          ¿No tienes una cuenta? <Link href='/registro' underline='hover'>Regístrate aquí</Link>
                         </Typography>
                       </Box>
                     </Box>
