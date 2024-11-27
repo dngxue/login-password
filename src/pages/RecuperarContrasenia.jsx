@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import NavBarHome from '../components/NavBar';
 import '../css/RecuperarContrasena.css';
 //  Material UI
-import ThemeMaterialUI from '../components/ThemeMaterialUI';
+import ThemeMaterialUI from '../components/ThemeMaterialUI.js';
 import { Container, Card, Box, Link, Typography, CardHeader, CardContent, TextField } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 // Íconos
@@ -42,9 +43,10 @@ const RecuperarContrasenia = () => {
 
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
-      <Box
-        className='is_container'
-      />
+      <NavBarHome
+        transparentNavbar={false}
+        lightLink={false} />
+
       <Container maxWidth='lg' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '75vh' }}>
         <Card sx={{ padding: '1%', width: '100%', margin: '50px 0 40px 0' }}>
             <Box sx={{ display: 'flex', justifyContent: 'left', padding: '16px 0 0 16px' }}>
@@ -70,16 +72,16 @@ const RecuperarContrasenia = () => {
                 Ingresa tu correo electrónico en el campo a continuación y te enviaremos un enlace para restablecer tu contraseña.
                 </Typography>
                 <TextField
-                fullWidth
-                variant='outlined'
-                size='small'
-                required
-                label='Correo electrónico'
-                sx={{ margin: '20px 0 40px 0' }}
-                value={email}
-                onChange={handleEmailChange}
-                error={touched && error}
-                helperText={touched && error ? 'Por favor, ingresa un correo electrónico válido.' : ''}
+                  fullWidth
+                  variant='outlined'
+                  size='small'
+                  required
+                  label='Correo electrónico'
+                  sx={{ margin: '20px 0 40px 0' }}
+                  value={email}
+                  onChange={handleEmailChange}
+                  error={touched && error}
+                  helperText={touched && error ? 'Por favor, ingresa un correo electrónico válido.' : ''}
                 />
                 <Box sx={{ display: 'flex', justifyContent: 'right' }}>
                 <ButtonsMod
