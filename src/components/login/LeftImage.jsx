@@ -1,7 +1,7 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box } from '@mui/material'
 
-function LeftImage({ imageUrl, nombreFotografo }) {
+function LeftImage({ imageUrl }) {
   return (
     <Box
       sx={{
