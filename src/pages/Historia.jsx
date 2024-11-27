@@ -22,8 +22,8 @@ const Historia = () => {
             contenido: 'El algoritmo de Diffie-Hellman es un protocolo criptográfico que permite a dos partes generar una clave secreta compartida a través de un canal inseguro, sin necesidad de haber compartido previamente una clave. Fue propuesto en 1976 por Whitfield Diffie y Martin Hellman, y es fundamental para el intercambio de claves seguras en la criptografía moderna. Se utiliza en protocolos como TLS/SSL para asegurar comunicaciones en la web y en VPNs para crear canales seguros. Funciona mediante el intercambio de valores públicos y el cálculo de la clave secreta compartida usando exponentiación modular, lo que hace difícil para los atacantes derivar la clave sin conocer los secretos privados. Es muy seguro, pero no incluye autenticación, por lo que a menudo se combina con otros métodos para garantizar la seguridad total.',
         },
         {
-            titulo: '',
-            contenido: '',
+            titulo: 'Criptografía Cuántica',
+            contenido: 'La criptografía cuántica utiliza principios de la mecánica cuántica para crear sistemas de comunicación altamente seguros, como la Distribución Cuántica de Claves (QKD). Su seguridad se basa en leyes físicas, no en cálculos matemáticos, y cualquier intento de interceptación altera los datos, alertando a las partes involucradas. Creada en los años 80 con el protocolo BB84, se usa para proteger datos sensibles contra ataques, incluyendo los de computadoras cuánticas. Aunque ofrece seguridad teóricamente inquebrantable, enfrenta desafíos como altos costos y limitaciones tecnológicas actuales.',
         }
     ]
 
