@@ -6,7 +6,7 @@ import ThemeMaterialUI from '../components/ThemeMaterialUI';
 import ButtonsMod from '../components/ButtonsMod';
 // Material UI
 import { InputAdornment, IconButton } from '@mui/material';
-import { Container, Card, Box, Typography, CardHeader, CardContent, FormControl, TextField } from '@mui/material';
+import { Container, Card, Box, Typography, CardHeader, CardContent, FormControl, TextField, Link } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 // iconos
 import Visibility from '@mui/icons-material/Visibility';
@@ -34,6 +34,11 @@ const NuevaContrasenia = () => {
         
       <Container maxWidth='lg' sx={{display:'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '75vh'}}>
         <Card sx={{padding: '1%', width: '100%', margin: '50px 0 40px 0'}}>
+            <Box sx={{ display: 'flex', justifyContent: 'left', padding: '16px 0 0 16px' }}>
+                <Typography variant='body2'>
+                    <Link href='/'>Volver a inicio de sesión</Link>
+                </Typography>
+            </Box>
             <CardHeader
                 className='rc-header-titulo'
                 avatar={

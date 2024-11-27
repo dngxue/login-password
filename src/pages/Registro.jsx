@@ -208,7 +208,7 @@ function LoginPage() {
 
                       <Box>
                         <Typography variant='body2' className='mt-4 pb-2' sx={{ textAlign: 'center' }}>
-                          ¿Ya tienes una cuenta? <Link href='/login' underline='hover'>Inicia Sesión</Link>
+                          ¿Ya tienes una cuenta? <Link href='/' underline='hover'>Inicia Sesión</Link>
                         </Typography>
                       </Box>
                     </Box>

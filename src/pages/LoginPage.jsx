@@ -119,6 +119,7 @@ function LoginPage() {
                         <Box className='my-4'>
                           <TextField
                             hiddenLabel
+                            required
                             id='log-correo'
                             label='Correo electrónico'
                             placeholder='correo@ejemplo.com'
@@ -134,7 +135,7 @@ function LoginPage() {
 
                         <Box className='my-4'>
                           <FormControl variant='outlined' size='small' fullWidth error={formSubmitted && !contraseña}>
-                            <InputLabel htmlFor='log-password'>Contraseña</InputLabel>
+                            <InputLabel htmlFor='log-password' required>Contraseña</InputLabel>
                             <OutlinedInput
                               id='log-password'
                               type={showPassword ? 'text' : 'password'}
