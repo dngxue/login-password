@@ -11,6 +11,7 @@ import { Visibility, VisibilityOff, Close as CloseIcon } from '@mui/icons-materi
 
 // componentes importados
 import Navbar from '../components/NavBar';
+import Footer from '../components/Footer';
 import LeftImage from '../components/login/LeftImage';
 
 // estilos importados
@@ -218,6 +219,8 @@ function LoginPage() {
 
             </Grid>
           </Container>
+
+          <Footer />
         </Box>
       </Box>
     </ThemeProvider >

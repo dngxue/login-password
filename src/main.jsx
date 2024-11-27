@@ -5,6 +5,7 @@ import RecuperarContrasena from './pages/RecuperarContrasenia.jsx';
 import Registro from './pages/Registro.jsx';
 import NuevaContrasenia from './pages/NuevaContrasenia.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import HomeUsuario from './pages/HomeUsuario.jsx';
 import './css/index.css';
 import '@fontsource/montserrat';
 
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')).render(
         <Route path='/recuperar-contrasenia' element={<RecuperarContrasena />} />
         <Route path='/registro' element={<Registro />} />
         <Route path='/nueva-contrasenia' element={<NuevaContrasenia />} />
+        <Route path='/home' element={<HomeUsuario />} />
       </Routes>
     </Router>
   </StrictMode>

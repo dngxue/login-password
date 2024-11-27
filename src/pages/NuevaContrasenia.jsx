@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import NavBarHome from '../components/NavBar';
+import Footer from '../components/Footer';
 import '../css/RecuperarContrasena.css';
 // Comopnentes
 import ThemeMaterialUI from '../components/ThemeMaterialUI';
@@ -32,7 +33,7 @@ const NuevaContrasenia = () => {
         transparentNavbar={false}
         lightLink={false} />
         
-      <Container maxWidth='lg' sx={{display:'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '75vh'}}>
+      <Container maxWidth='lg' sx={{display:'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '100vh'}}>
         <Card sx={{padding: '1%', width: '100%', margin: '50px 0 40px 0'}}>
             <Box sx={{ display: 'flex', justifyContent: 'left', padding: '16px 0 0 16px' }}>
                 <Typography variant='body2'>
@@ -124,7 +125,8 @@ const NuevaContrasenia = () => {
         </Card>
 
       </Container>
-    
+      
+      <Footer />
     </ThemeProvider>
   );
 

@@ -12,6 +12,7 @@ import { Visibility, VisibilityOff, Close as CloseIcon } from '@mui/icons-materi
 
 // componentes importados
 import Navbar from '../components/NavBar';
+import Footer from '../components/Footer';
 import LeftImage from '../components/login/LeftImage';
 
 // estilos importados
@@ -88,7 +89,7 @@ function LoginPage() {
             lightLink={false}
             staticNavbar={false}
           />
-          <Container maxWidth='md' disableGutters className='py-4' >
+          <Container maxWidth='md' disableGutters className='py-4' sx={{ minHeight: '100vh' }}>
 
             <Grid container sx={{ justifyContent: 'center', borderRadius: '6px', overflow: 'hidden' }}>
               {/* Lado Izquierdo - Imagen */}
@@ -185,6 +186,8 @@ function LoginPage() {
 
             </Grid>
           </Container>
+
+          <Footer/>
         </Box>
       </Box>
     </ThemeProvider >
