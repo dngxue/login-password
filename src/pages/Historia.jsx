@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 import NavBarHome from '../components/NavBar';
 import Footer from '../components/Footer';

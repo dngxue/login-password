@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container, Stack, Typography, Box, Link } from '@mui/material';
 import { TipsAndUpdates as TipsAndUpdatesIcon } from '@mui/icons-material';
 import ButtonsMod from '../ButtonsMod';
