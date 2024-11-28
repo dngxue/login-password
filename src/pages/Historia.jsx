@@ -6,11 +6,32 @@ import Criptografia from '../components/criptografia/Criptografia';
 import ThemeMaterialUI from '../components/ThemeMaterialUI';
 import { ThemeProvider } from '@mui/material/styles';
 
+import UserService from '../services/UserService';
+import { useEffect } from 'react';
+
 const Historia = () => {
+
+    useEffect(() => {
+        const verifyLogin = async () => {
+            try {
+                const isLogged = await UserService.verifyLogin();
+                console.log(isLogged);
+                if (!isLogged) {
+                    console.log('Usuario no logueado');
+                    window.location.href = '/';
+                }
+            } catch (error) {
+                console.error('Error verificando el login:', error);
+            }
+        };
+
+        verifyLogin();
+    }, []);
+
     const location = useLocation();
     const searchParam = new URLSearchParams(location.search);
     const opcion = parseInt(searchParam.get('opcion'), 10);
-
+    
     const contenidos = [
         {
             titulo:'La escítala espartana',
@@ -25,11 +46,11 @@ const Historia = () => {
             contenido: 'La criptografía cuántica utiliza principios de la mecánica cuántica para crear sistemas de comunicación altamente seguros, como la Distribución Cuántica de Claves (QKD). Su seguridad se basa en leyes físicas, no en cálculos matemáticos, y cualquier intento de interceptación altera los datos, alertando a las partes involucradas. Creada en los años 80 con el protocolo BB84, se usa para proteger datos sensibles contra ataques, incluyendo los de computadoras cuánticas. Aunque ofrece seguridad teóricamente inquebrantable, enfrenta desafíos como altos costos y limitaciones tecnológicas actuales.',
         }
     ]
-
+    
     const contenidoSeleccionado = contenidos[opcion] || contenidos[0];
-
-  return (
-    <ThemeProvider theme={ThemeMaterialUI}>
+    
+    return (
+        <ThemeProvider theme={ThemeMaterialUI}>
         <NavBarHome
             transparentNavbar={false}
         />

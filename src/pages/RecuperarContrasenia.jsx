@@ -10,6 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import LockResetIcon from '@mui/icons-material/LockReset';
 // Componentes
 import ButtonsMod from '../components/ButtonsMod';
+import UserService from '../services/UserService';
 
 const RecuperarContrasenia = () => {
 
@@ -35,6 +36,7 @@ const RecuperarContrasenia = () => {
 
     if (validarEmail(email)) {
       setError(false);
+      UserService.sendResetPassword(email);
       console.log('Correo enviado a: ', email);
     } else {
       setError(true);
