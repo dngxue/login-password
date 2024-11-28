@@ -1,5 +1,5 @@
 // modulos importados
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Container, Box, Typography } from '@mui/material';
 import { TextField, Grid2 as Grid, FormControl, InputLabel, Card, Button, Link } from '@mui/material';
@@ -21,6 +21,8 @@ import '../css/LoginPage.css';
 
 // elementos de la página
 import casaLeon from '../img/login/place-img-casadeleon.jpg';
+
+import UserService from '../services/UserService';
 
 function LoginPage() {
   // validacion de correo
@@ -51,6 +53,11 @@ function LoginPage() {
     setContraseña(e.target.value);
   };
 
+  const handleLogin = (e, correo, contraseña) => {
+    const response = UserService.login(correo, contraseña);
+    console.log(localStorage.getItem('access_token'));
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setFormSubmitted(true);
@@ -78,6 +85,11 @@ function LoginPage() {
   const handleHomeClick = () => {
     navigate('/');
   };
+
+  useEffect(() => {
+    localStorage.removeItem('access_token');
+    console.log(localStorage.getItem('access_token'));
+  }, []);
 
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
