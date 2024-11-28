@@ -1,5 +1,5 @@
 // modulos importados
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Container, Box, Typography } from '@mui/material';
 import { TextField, Grid2 as Grid, Card, Button, Link } from '@mui/material';
@@ -20,21 +20,25 @@ import '../css/LoginPage.css';
 
 // elementos de la página
 import teotihuacan from '../img/login/piramides-teotihuacan.webp';
+import UserService from '../services/UserService';
 
 function LoginPage() {
   // validacion de correo
-  const [correo, setCorreo] = useState('');
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');  // Estado para el username
+  const [password, setPassword] = useState(''); // Estado para la contraseña
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [correoReglas, setCorreoReglas] = useState({
     sinEspacios: false,
     arrobaCaracteres: false,
     dominioConPunto: false,
+    noVacio: false,
   });
 
   const handleCorreoChange = (e) => {
     const correo = e.target.value;
-    setCorreo(correo);
-    console.log(correo);
+    setEmail(correo);
 
     // Validar reglas
     setCorreoReglas({
@@ -45,12 +49,24 @@ function LoginPage() {
     });
   };
 
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setFormSubmitted(true);
 
-    if (correoReglas.sinEspacios && correoReglas.arrobaCaracteres && correoReglas.dominioConPunto && correoReglas.noVacio ) {
-      handleLogin(e, correo);
+    if (correoReglas.sinEspacios && correoReglas.arrobaCaracteres && correoReglas.dominioConPunto && correoReglas.noVacio) {
+      console.log({ username, correo: email, password, confirmPassword });
+
+      if(password == confirmPassword) {
+        UserService.registerUser({
+          username,
+          email,
+          password
+        })
+      }
     }
   };
 
@@ -66,7 +82,6 @@ function LoginPage() {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
-  // redireccionamiento a home
   const navigate = useNavigate();
   const handleHomeClick = () => {
     navigate('/');
@@ -75,25 +90,18 @@ function LoginPage() {
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
       <Box className='login-background'>
-
         <Box className='lo_pa-container-tool'>
-          <Navbar
-            transparentNavbar={false}
-            lightLink={false}
-            staticNavbar={false}
-          />
-          <Container maxWidth='md' disableGutters className='py-4' >
-
+          <Navbar transparentNavbar={false} lightLink={false} staticNavbar={false} />
+          <Container maxWidth='md' disableGutters className='py-4'>
             <Grid container sx={{ justifyContent: 'center', borderRadius: '6px', overflow: 'hidden' }}>
               {/* Lado Izquierdo - Imagen */}
               <Grid size={{ xs: 10, md: 6 }} className='login-left-container'>
-                <LeftImage
-                  imageUrl={teotihuacan} />
+                <LeftImage imageUrl={teotihuacan} />
               </Grid>
 
-              {/* Lado derecho - Formulario*/}
+              {/* Lado derecho - Formulario */}
               <Grid size={{ xs: 12, sm: 10, md: 6 }}>
-                <Card className='login-right-form' sx={{ padding: '1%'}}>
+                <Card className='login-right-form' sx={{ padding: '1%' }}>
                   <Box>
                     <Box sx={{ display: 'flex', justifyContent: 'end' }}>
                       <IconButton aria-label='cerrar' onClick={handleHomeClick}>
@@ -101,11 +109,11 @@ function LoginPage() {
                       </IconButton>
                     </Box>
 
-                    <Box sx={{margin: '0 15px 20px 15px'}}>
+                    <Box sx={{ margin: '0 15px 20px 15px' }}>
                       <Typography variant='h4' sx={{ fontWeight: 'bold', marginBottom: '5px' }}>
-                        ¡Resgístrate!
+                        ¡Regístrate!
                       </Typography>
-                      <Typography variant='body1' sx={{marginBottom: '20px'}}>
+                      <Typography variant='body1' sx={{ marginBottom: '20px' }}>
                         Llena los siguientes campos para continuar
                       </Typography>
 
@@ -114,10 +122,12 @@ function LoginPage() {
                           <TextField
                             hiddenLabel
                             required
-                            id='log-correo'
-                            label='Nombre de usuario'
+                            id='log-nombre'
+                            label='Nombre de Usuario'
                             size='small'
                             type='text'
+                            value={username}
+                            onChange={handleUsernameChange}
                             fullWidth
                           />
                         </Box>
@@ -133,9 +143,8 @@ function LoginPage() {
                             type='text'
                             onChange={handleCorreoChange}
                             fullWidth
-                            // errores si no cumple con las reglas
-                            error={formSubmitted && !correo}
-                            helperText={formSubmitted && !correo ? 'El correo no puede estar vacío' : ''}
+                            error={formSubmitted && !email}
+                            helperText={formSubmitted && !email ? 'El correo no puede estar vacío' : ''}
                           />
                         </Box>
 
@@ -149,23 +158,22 @@ function LoginPage() {
                             variant='outlined'
                             size='small'
                             required
-
                             label='Contraseña'
                             type={showPassword ? 'text' : 'password'}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             InputProps={{
                               endAdornment: (
                                 <InputAdornment position='end'>
                                   <IconButton
-                                    aria-label={
-                                      showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'
-                                    }
+                                    aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                                     onClick={handleClickShowPassword}
-                                    endge='end'
+                                    edge='end'
                                   >
                                     {showPassword ? <VisibilityOff /> : <Visibility />}
                                   </IconButton>
                                 </InputAdornment>
-                              )
+                              ),
                             }}
                           />
                         </Box>
@@ -177,18 +185,15 @@ function LoginPage() {
                             sx={{ margin: '0px 0 40px 0' }}
                             size='small'
                             required
-                            
                             label='Confirmar contraseña'
                             type={showPassword ? 'text' : 'password'}
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
                             InputProps={{
                               endAdornment: (
                                 <InputAdornment position='end'>
                                   <IconButton
-                                    aria-label={
-                                      showConfirmPassword
-                                        ? 'Ocultar contraseña'
-                                        : 'Mostrar contraseña'
-                                    }
+                                    aria-label={showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
                                     onClick={handleClickShowConfirmPassword}
                                     edge='end'
                                   >
@@ -201,7 +206,7 @@ function LoginPage() {
                         </Box>
 
                         <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '40px' }}>
-                          <Button variant='contained' type='submit' >
+                          <Button variant='contained' type='submit'>
                             Registrarse
                           </Button>
                         </Box>
@@ -216,15 +221,13 @@ function LoginPage() {
                   </Box>
                 </Card>
               </Grid>
-
             </Grid>
           </Container>
-
           <Footer />
         </Box>
       </Box>
-    </ThemeProvider >
-  )
+    </ThemeProvider>
+  );
 }
 
-export default LoginPage
+export default LoginPage;
