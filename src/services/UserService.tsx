@@ -1,6 +1,7 @@
 import Api from "./api/api.config";
 import { showErrorAlert } from "../alerts/errorAlert";
 import { showSuccessAlert } from "../alerts/successAlert";
+import { useNavigate } from "react-router-dom";
 type TypeUser = {
   username: string,
   email: string,
@@ -12,6 +13,7 @@ const UserService = (() => {
     try {
       const response = await Api.post("/register", user);
       if(response.status == 200) {
+        showSuccessAlert('Registro completado');
         return response.data;
       }
     } catch (error:any) {
@@ -36,6 +38,7 @@ const UserService = (() => {
       const response = await Api.post("/login", user);
       if(response.status == 200) {
         localStorage.setItem("access_token", response.data.token);
+        
         return response.data;
       }
     } catch (error:any) {

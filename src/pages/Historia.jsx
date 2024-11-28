@@ -8,6 +8,7 @@ import { ThemeProvider } from '@mui/material/styles';
 
 import UserService from '../services/UserService';
 import { useEffect } from 'react';
+import { showErrorAlert } from '../alerts/errorAlert';
 
 const Historia = () => {
 
@@ -15,13 +16,11 @@ const Historia = () => {
         const verifyLogin = async () => {
             try {
                 const isLogged = await UserService.verifyLogin();
-                console.log(isLogged);
                 if (!isLogged) {
-                    console.log('Usuario no logueado');
                     window.location.href = '/';
                 }
             } catch (error) {
-                console.error('Error verificando el login:', error);
+                showErrorAlert('Error al verificar el token');
             }
         };
 

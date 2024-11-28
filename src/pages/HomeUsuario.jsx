@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavBarHome from '../components/NavBar';
 import Footer from '../components/Footer';

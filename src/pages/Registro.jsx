@@ -53,7 +53,7 @@ function LoginPage() {
     setUsername(e.target.value);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
 
@@ -61,7 +61,7 @@ function LoginPage() {
       console.log({ username, correo: email, password, confirmPassword });
 
       if(password == confirmPassword) {
-        UserService.registerUser({
+        await UserService.registerUser({
           username,
           email,
           password

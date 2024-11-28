@@ -23,6 +23,7 @@ import '../css/LoginPage.css';
 import casaLeon from '../img/login/place-img-casadeleon.jpg';
 
 import UserService from '../services/UserService';
+import { showSuccessAlert } from '../alerts/successAlert';
 
 function LoginPage() {
   // validacion de correo
@@ -38,7 +39,6 @@ function LoginPage() {
   const handleCorreoChange = (e) => {
     const correo = e.target.value;
     setCorreo(correo);
-    console.log(correo);
 
     // Validar reglas
     setCorreoReglas({
@@ -53,17 +53,17 @@ function LoginPage() {
     setContraseña(e.target.value);
   };
 
-  const handleLogin = (e, correo, contraseña) => {
-    const response = UserService.login(correo, contraseña);
-    console.log(localStorage.getItem('access_token'));
-  };
-
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setFormSubmitted(true);
 
     if (correoReglas.sinEspacios && correoReglas.arrobaCaracteres && correoReglas.dominioConPunto && correoReglas.noVacio && (contraseña.length > 0)) {
-      handleLogin(e, correo, contraseña);
+      const response = await UserService.login(correo, contraseña);
+
+      if(response != null) {
+        showSuccessAlert('Sesión iniciada correctamente');
+        navigate('/home');
+      }
     }
   };
 
