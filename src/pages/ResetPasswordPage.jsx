@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import NavBarHome from '../components/Navbar.jsx';
+import Navbar from '../components/NavBar.jsx';
 import { Container, Card, Box, Typography, CardHeader, CardContent, FormControl, TextField, Link } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import ThemeMaterialUI from '../components/ThemeMaterialUI.js';
@@ -48,7 +48,7 @@ const ResetPasswordPage = () => {
   if (isValidCode == null) {
     return (
       <ThemeProvider theme={ThemeMaterialUI}>
-        <NavBarHome transparentNavbar={false} lightLink={false} />
+        <Navbar/>
 
         <Container maxWidth='lg' sx={{display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '100vh'}}>
           <Card sx={{ padding: '1%', width: '100%', margin: '50px 0 40px 0' }}>
@@ -96,7 +96,7 @@ const ResetPasswordPage = () => {
 
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
-      <NavBarHome transparentNavbar={false} lightLink={false}/>
+      <Navbar/>
       <Container maxWidth='lg' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', minHeight: '100vh' }}>
         <ResetPasswordForm
           handlePasswordChange={handlePasswordChange}

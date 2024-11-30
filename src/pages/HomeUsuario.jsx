@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import NavBarHome from '../components/Navbar';
+import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import ButtonsMod from '../components/ButtonsMod';
 // estilos y componentes
@@ -28,9 +28,7 @@ const HomeUsuario = () => {
 
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
-      <NavBarHome
-        transparentNavbar={false}
-        lightLink={false} />
+      <Navbar />
 
       <Container maxWidth='lg' className='sm-4' sx={{ minHeight: '90vh' }}>
         { /* Sección - Header */}

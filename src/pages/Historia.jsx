@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import NavBarHome from '../components/Navbar';
+import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Criptografia from '../components/criptografia/Criptografia';
 // estilos y componentes
@@ -29,9 +29,7 @@ const Historia = () => {
     
     return (
         <ThemeProvider theme={ThemeMaterialUI}>
-        <NavBarHome
-            transparentNavbar={false}
-        />
+        <Navbar/>
             <Criptografia 
                 titulo={contenidoSeleccionado.titulo}
                 contenido={contenidoSeleccionado.contenido}
