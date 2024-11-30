@@ -13,12 +13,11 @@ const Navbar = () => {
     setIsLogout(true);
     logout();
 
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       navigate('/');
       setIsLogout(false);
     }, 1000);
 
-    timer();
   }
 
   if (isLogout) {
