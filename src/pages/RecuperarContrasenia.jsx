@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import NavBarHome from '../components/NavBar';
+import NavBarHome from '../components/Navbar.jsx';
 import Footer from '../components/Footer.jsx';
 import '../css/RecuperarContrasena.css';
 //  Material UI

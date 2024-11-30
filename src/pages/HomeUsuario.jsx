@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import NavBarHome from '../components/NavBar';
+import NavBarHome from '../components/Navbar';
 import Footer from '../components/Footer';
 import ButtonsMod from '../components/ButtonsMod';
 // estilos y componentes
@@ -11,6 +11,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import HomeIcon from '@mui/icons-material/Home';
 
 const HomeUsuario = () => {
+  const username = localStorage.getItem('username');
   const navigate = useNavigate();
 
   const handleClasicaClick = () => {
@@ -35,7 +36,7 @@ const HomeUsuario = () => {
         { /* Sección - Header */}
         <Stack direction='row' spacing={1} alignItems='center' className='mb-2' sx={{ marginTop: '30px', display: 'flex', justifyContent: 'center' }}>
           <HomeIcon fontSize='large' sx={{ color: '#E4007C', fontSize: {xs: '1.5rem', sm: '2rem'} }} />
-          <Typography variant='h1' className='fw-bold' sx={{ fontSize: {xs: '1.5rem', sm: '2rem'} }}>Bienvenido [usuario]</Typography>
+          <Typography variant='h1' className='fw-bold' sx={{ fontSize: {xs: '1.5rem', sm: '2rem'} }}>Bienvenido {username}</Typography>
         </Stack>
 
         <Stack direction='column' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

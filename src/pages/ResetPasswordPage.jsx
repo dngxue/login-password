@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import NavBarHome from '../components/NavBar.jsx';
+import NavBarHome from '../components/Navbar.jsx';
 import { Container, Card, Box, Typography, CardHeader, CardContent, FormControl, TextField, Link } from '@mui/material';
 import { ThemeProvider } from '@emotion/react';
 import ThemeMaterialUI from '../components/ThemeMaterialUI.js';

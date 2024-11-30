@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import NavBarHome from '../components/NavBar';
+import NavBarHome from '../components/Navbar';
 import Footer from '../components/Footer';
 import Criptografia from '../components/criptografia/Criptografia';
 // estilos y componentes

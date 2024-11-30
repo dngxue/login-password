@@ -1,17 +1,29 @@
-import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import '../css/NavBar.css';
 import logo from '../img/logo-provicional.png';
-import avatar from '../img/userFoto.jpg';
+import useAuth from '../hooks/useAuth';
+import Loading from './Loading';
 
-function Navbar({ transparentNavbar, lightLink, staticNavbar }) {
+const Navbar = () => {
+  const { isAuthenticated, logout } = useAuth();
+  const [isLogout, setIsLogout] = useState(false);
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false); // Estado para controlar la apertura del menú
+  const handleLogout = async () => {
+    setIsLogout(true);
+    logout();
 
-  // Función para manejar la apertura y cierre del menú
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+    const timer = setTimeout(() => {
+      navigate('/');
+      setIsLogout(false);
+    }, 1000);
+
+    timer();
+  }
+
+  if (isLogout) {
+    return <Loading message='Cerrando sesión'/>
+  }
 
   return (
     <>
@@ -37,16 +49,29 @@ function Navbar({ transparentNavbar, lightLink, staticNavbar }) {
 
           {/* Enlaces del menú */}
           <div className="collapse navbar-collapse"  id="navbarNav">
-            <ul className="navbar-nav">
+          <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" href="/home" >Home</a>
+                <a className="nav-link active" href="/home">Home</a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">Iniciar Sesión</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/registro">Registrarse</a>
-              </li>
+
+              {/* Mostrar "Iniciar Sesión" y "Registrarse" solo si no está autenticado */}
+              {!isAuthenticated ? (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/">Iniciar Sesión</Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/registro">Registrarse</Link>
+                  </li>
+                </>
+              ) : (
+                // Mostrar "Cerrar Sesión" si está autenticado
+                <li className="nav-item">
+                  <button className="nav-link" onClick={handleLogout}>
+                    Cerrar Sesión
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </div>

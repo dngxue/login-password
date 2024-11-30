@@ -10,7 +10,7 @@ import { IconButton, InputAdornment } from '@mui/material';
 import { Visibility, VisibilityOff, Close as CloseIcon } from '@mui/icons-material';
 
 // componentes importados
-import Navbar from '../components/NavBar';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import LeftImage from '../components/login/LeftImage';
 
@@ -91,7 +91,8 @@ function LoginPage() {
     <ThemeProvider theme={ThemeMaterialUI}>
       <Box className='login-background'>
         <Box className='lo_pa-container-tool'>
-          <Navbar transparentNavbar={false} lightLink={false} staticNavbar={false} />
+          <Navbar/>
+          
           <Container maxWidth='md' disableGutters className='py-4'>
             <Grid container sx={{ justifyContent: 'center', borderRadius: '6px', overflow: 'hidden' }}>
               {/* Lado Izquierdo - Imagen */}

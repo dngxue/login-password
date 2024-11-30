@@ -1,4 +1,4 @@
-import Api from "./api/api.config";
+import Api from './api/api.config.js';
 import { showErrorAlert } from "../alerts/errorAlert";
 import { showSuccessAlert } from "../alerts/successAlert";
 type TypeUser = {
@@ -36,8 +36,8 @@ const UserService = (() => {
       const user = { email, password };
       const response = await Api.post("/login", user);
       if(response.status == 200) {
+        localStorage.setItem('username', response.data.account.username);
         localStorage.setItem("access_token", response.data.token);
-        
         return response.data;
       }
     } catch (error:any) {
@@ -51,15 +51,8 @@ const UserService = (() => {
       if(token) {
         const response = await Api.get(`/validate-token/${token}`);	
         if(response.status == 200) {
-          console.log(response);
+          return response.data.authenticated;
         }
-        else {
-          return false;
-        }
-      }
-
-      else{
-        return false;
       }
     } catch (error:any) {
       showErrorAlert(error.response.data.error);
@@ -89,13 +82,20 @@ const UserService = (() => {
     }
   }
 
+  const logout = async () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
+
+  }
+
   return {
     registerUser,
     sendResetPassword,
     login,
     verifyLogin,
     verifyVerificationCode,
-    sendNewPassword
+    sendNewPassword,
+    logout
   }
 })();
 

@@ -1,5 +1,5 @@
 // modulos importados
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Container, Box, Typography } from '@mui/material';
 import { TextField, Grid2 as Grid, FormControl, InputLabel, Card, Button, Link } from '@mui/material';
@@ -11,7 +11,7 @@ import { IconButton, InputAdornment, OutlinedInput } from '@mui/material';
 import { Visibility, VisibilityOff, Close as CloseIcon } from '@mui/icons-material';
 
 // componentes importados
-import Navbar from '../components/NavBar';
+import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import LeftImage from '../components/login/LeftImage';
 
@@ -26,7 +26,6 @@ import UserService from '../services/UserService';
 import { showSuccessAlert } from '../alerts/successAlert';
 
 function LoginPage() {
-  // validacion de correo
   const [correo, setCorreo] = useState('');
   const [contraseña, setContraseña] = useState('');
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -40,7 +39,6 @@ function LoginPage() {
     const correo = e.target.value;
     setCorreo(correo);
 
-    // Validar reglas
     setCorreoReglas({
       sinEspacios: /^[^\s]+$/.test(correo),
       arrobaCaracteres: /^[^@]+@[^@]+$/.test(correo),
@@ -67,7 +65,6 @@ function LoginPage() {
     }
   };
 
-  // visibilidad de la contraseña
   const [showPassword, setShowPassword] = React.useState(false);
 
   const handleClickShowPassword = () => {
@@ -80,15 +77,10 @@ function LoginPage() {
     event.preventDefault();
   };
 
-  // redireccionamiento a home
   const navigate = useNavigate();
   const handleHomeClick = () => {
     navigate('/');
   };
-
-  useEffect(() => {
-    localStorage.removeItem('access_token');
-  }, []);
 
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
