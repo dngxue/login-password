@@ -88,7 +88,6 @@ function LoginPage() {
 
   useEffect(() => {
     localStorage.removeItem('access_token');
-    console.log(localStorage.getItem('access_token'));
   }, []);
 
   return (
