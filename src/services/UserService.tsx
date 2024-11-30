@@ -1,7 +1,6 @@
 import Api from "./api/api.config";
 import { showErrorAlert } from "../alerts/errorAlert";
 import { showSuccessAlert } from "../alerts/successAlert";
-import { useNavigate } from "react-router-dom";
 type TypeUser = {
   username: string,
   email: string,
@@ -49,24 +48,41 @@ const UserService = (() => {
   const verifyLogin = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      console.log(token);
       if(token) {
-        // Agregar el token al final del link
         const response = await Api.get(`/validate-token/${token}`);	
         if(response.status == 200) {
-          if(response.data === true)
-            return response.data;
-          else {
-            return false;
-          }
+          console.log(response);
         }
         else {
           return false;
         }
       }
+
       else{
         return false;
       }
+    } catch (error:any) {
+      showErrorAlert(error.response.data.error);
+      return false;
+    }
+  }
+
+  const verifyVerificationCode = async (code: string, token:string) => {
+    try {
+      const response = await Api.post(`/validate-code/${token}`, { code });
+      showSuccessAlert(response.data.message);
+      return response.data.verifyCode;
+    } catch (error:any) {
+      showErrorAlert(error.response.data.error);
+      return false;
+    }
+  }
+
+  const sendNewPassword = async (token:string, newPassword: string) => {
+    try {
+      const response = await Api.post(`/reset-password/${token}`, { newPassword });
+      showSuccessAlert(response.data.message);
+      return response.data.verifyPassword;
     } catch (error:any) {
       showErrorAlert(error.response.data.error);
       return false;
@@ -77,7 +93,9 @@ const UserService = (() => {
     registerUser,
     sendResetPassword,
     login,
-    verifyLogin
+    verifyLogin,
+    verifyVerificationCode,
+    sendNewPassword
   }
 })();
 
