@@ -91,7 +91,8 @@ function LoginPage() {
     <ThemeProvider theme={ThemeMaterialUI}>
       <Box className='login-background'>
         <Box className='lo_pa-container-tool'>
-          <Navbar transparentNavbar={false} lightLink={false} staticNavbar={false} />
+          <Navbar/>
+          
           <Container maxWidth='md' disableGutters className='py-4'>
             <Grid container sx={{ justifyContent: 'center', borderRadius: '6px', overflow: 'hidden' }}>
               {/* Lado Izquierdo - Imagen */}

@@ -1,32 +1,11 @@
 import { useLocation } from 'react-router-dom';
-import NavBarHome from '../components/NavBar';
+import Navbar from '../components/NavBar';
 import Footer from '../components/Footer';
 import Criptografia from '../components/criptografia/Criptografia';
 // estilos y componentes
 import ThemeMaterialUI from '../components/ThemeMaterialUI';
 import { ThemeProvider } from '@mui/material/styles';
-
-import UserService from '../services/UserService';
-import { useEffect } from 'react';
-import { showErrorAlert } from '../alerts/errorAlert';
-
 const Historia = () => {
-
-    useEffect(() => {
-        const verifyLogin = async () => {
-            try {
-                const isLogged = await UserService.verifyLogin();
-                if (!isLogged) {
-                    window.location.href = '/';
-                }
-            } catch (error) {
-                showErrorAlert('Error al verificar el token');
-            }
-        };
-
-        verifyLogin();
-    }, []);
-
     const location = useLocation();
     const searchParam = new URLSearchParams(location.search);
     const opcion = parseInt(searchParam.get('opcion'), 10);
@@ -50,9 +29,7 @@ const Historia = () => {
     
     return (
         <ThemeProvider theme={ThemeMaterialUI}>
-        <NavBarHome
-            transparentNavbar={false}
-        />
+        <Navbar/>
             <Criptografia 
                 titulo={contenidoSeleccionado.titulo}
                 contenido={contenidoSeleccionado.contenido}

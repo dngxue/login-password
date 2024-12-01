@@ -1,7 +1,6 @@
-import Api from "./api/api.config";
+import Api from './api/api.config.js';
 import { showErrorAlert } from "../alerts/errorAlert";
 import { showSuccessAlert } from "../alerts/successAlert";
-import { useNavigate } from "react-router-dom";
 type TypeUser = {
   username: string,
   email: string,
@@ -37,8 +36,8 @@ const UserService = (() => {
       const user = { email, password };
       const response = await Api.post("/login", user);
       if(response.status == 200) {
+        localStorage.setItem('username', response.data.account.username);
         localStorage.setItem("access_token", response.data.token);
-        
         return response.data;
       }
     } catch (error:any) {
@@ -49,23 +48,11 @@ const UserService = (() => {
   const verifyLogin = async () => {
     try {
       const token = localStorage.getItem("access_token");
-      console.log(token);
       if(token) {
-        // Agregar el token al final del link
         const response = await Api.get(`/validate-token/${token}`);	
         if(response.status == 200) {
-          if(response.data === true)
-            return response.data;
-          else {
-            return false;
-          }
+          return response.data.authenticated;
         }
-        else {
-          return false;
-        }
-      }
-      else{
-        return false;
       }
     } catch (error:any) {
       showErrorAlert(error.response.data.error);
@@ -73,11 +60,42 @@ const UserService = (() => {
     }
   }
 
+  const verifyVerificationCode = async (code: string, token:string) => {
+    try {
+      const response = await Api.post(`/validate-code/${token}`, { code });
+      showSuccessAlert(response.data.message);
+      return response.data.verifyCode;
+    } catch (error:any) {
+      showErrorAlert(error.response.data.error);
+      return false;
+    }
+  }
+
+  const sendNewPassword = async (token:string, newPassword: string) => {
+    try {
+      const response = await Api.post(`/reset-password/${token}`, { newPassword });
+      showSuccessAlert(response.data.message);
+      return response.data.verifyPassword;
+    } catch (error:any) {
+      showErrorAlert(error.response.data.error);
+      return false;
+    }
+  }
+
+  const logout = async () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('username');
+
+  }
+
   return {
     registerUser,
     sendResetPassword,
     login,
-    verifyLogin
+    verifyLogin,
+    verifyVerificationCode,
+    sendNewPassword,
+    logout
   }
 })();
 

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import NavBarHome from '../components/NavBar';
+import { useState } from 'react';
+import Navbar from '../components/NavBar.jsx';
 import Footer from '../components/Footer.jsx';
 import '../css/RecuperarContrasena.css';
 //  Material UI
@@ -46,7 +46,7 @@ const RecuperarContrasenia = () => {
 
   return (
     <ThemeProvider theme={ThemeMaterialUI}>
-      <NavBarHome
+      <Navbar
         transparentNavbar={false}
         lightLink={false} />
 
